@@ -1,9 +1,9 @@
 # Bonsai CLI & SDK
+This is for training my own breakout BRAIN
+The first step, not on the command line, is to make a new brain on the website. 
+The instructions below assume it's named mybreakout
 
 ```
-# This is for training my own breakout BRAIN
-# The first step, not on the command line, is to make a new brain on the website. The instructions below assume it's 
-# named mybreakout
 
 $ virtualenv bonsaienv
 $ source bonsaienv/bin/activate 
