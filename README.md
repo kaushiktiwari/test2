@@ -1,5 +1,6 @@
-Bonsai CLI & SDK
+# Bonsai CLI & SDK
 
+```
 # This is for training my own breakout BRAIN
 # The first step, not on the command line, is to make a new brain on the website. The instructions below assume it's 
 # named mybreakout
@@ -52,3 +53,4 @@ $ bonsai deploy mybreakout
 deploy success.
 Deploy Success 
 For predictions connect your simulator to: https://brains.bons.ai/<link to trained BRAIN>
+```
