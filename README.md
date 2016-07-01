@@ -1,54 +1,54 @@
 Bonsai CLI & SDK
 
+# This is for training my own breakout BRAIN
+# The first step, not on the command line, is to make a new brain on the website. The instructions below assume it's 
+# named mybreakout
+
 $ virtualenv bonsaienv
 $ source bonsaienv/bin/activate 
-$ pip install git+https://github.com/BonsaiAI/bonsaitools 
-$ git clone https://github.com/BonsaiAI/breakoutdemo.git 
+$ git clone https://github.com/BonsaiAI/breakoutdemo.git
+$ cd breakoutdemo
+$ pip install -r requirements.txt
  
-$ cd breakoutdemo 
- 
-# Launch the game and play it 
+# Optional: Launch the game and play it 
 $ python bricka.py 
  
-# Edit the inkling to show how the system will learn to play 
+# Optional: Edit the inkling to show how the system will learn to play 
 $ subl breakout.ink 
  
-# Edit bricka.py to show necessary changes 
+# Optional: Edit bricka.py to show necessary changes 
 $ subl bricka.py 
- 
-# verify breakout.ink 
-$ brain --lint breakout.ink 
-0 errors 
-Ready to upload. 
- 
-# upload breakout.ink 
-# the following command could lint pre-upload 
-# the URL could be shortened given config info (for example brains.bons.ai and the user name) 
-# Uploading a new inkling file generates a new id. Most old id's don't need to stick around right now (only the 
-# deployed brain). 
-$ brain --user=megan --password --create http://brains.bons.ai/megan/breakout-brain breakout.ink 
-Password:  
-Upload success. 
-http://brains.bons.ai/megan/breakout-brain/1 
- 
-# Launch bricka.py for training, url updates to  
-$ python --brainnpc=http://brains.bons.ai/megan/breakout-brain/1 bricka.py 
- 
-# train 
-$ brain --train http://brains.bons.ai/megan/breakout-brain/1 
-BRAIN breakout-brain found. 
-Simulator breakoutsim found. 
-Training… 
-10000 epochs, 90% accuracy 
-Train complete. 
- 
-# deploy.  
-# Only one version is in the 'deployed' state, old versions are in a not deployed stated 
-$ brain --deploy http://brains.bons.ai/megan/breakout-brain/1 
+
+# this command will popup a web page that asks you to login once you login it has an access key (like phacility or heroku)
+# the page will tell them to copy the key here
+$ bonsai configure
+You can get the access key at https://brains.bons.ai/accesskey
+Access Key:
+authenticated.
+
+$ bonsai load mybreakout breakout.ink
+loaded
+
+
+$ python breakout.py --brainnpc=<http link to BRAIN server>
+
+$ bonsai sims list
+Simulator   Count    Status
+---------   -----    --------
+breakout    1        ready
+
+$ bonsai brain train mybreakout
+training started.
+Training...
+10000 trials, 90% accuracy 
+Train complete.
+
+# Breakout exits, the user could change inkling, load it again, and train again until they are
+# satisfied.
+
+#Once satisfied with the training accuracy, you can go ahead and deploy your brain
+
+$ bonsai deploy mybreakout
+deploy success.
 Deploy Success 
-http://brains.bons.ai/megan/breakout-brain/1 
-Host: 127.0.0.1 
-Port: 5554 
- 
-# show the deployed net playing the game 
-$ python --brainnpc=http://brains.bons.ai/megan/breakout-brain/deployed bricka.py  
+For predictions connect your simulator to: https://brains.bons.ai/<link to trained BRAIN>
