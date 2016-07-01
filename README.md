@@ -1,6 +1,6 @@
 Bonsai CLI & SDK
 
-$ virtualenv bonsaienv 
+$ virtualenv bonsaienv
 $ source bonsaienv/bin/activate 
 $ pip install git+https://github.com/BonsaiAI/bonsaitools 
 $ git clone https://github.com/BonsaiAI/breakoutdemo.git 
